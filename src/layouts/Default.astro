@@ -1,0 +1,53 @@
+---
+import { SEO } from 'astro-seo';
+
+import Header from '../components/Header.astro';
+
+import '../styles/base.css';
+
+const {
+  title = 'UNIX pipes as a service',
+  description = 'pipelet.io is a service for data aggregation and manipulation workflows. It takes the principal of pipes from UNIX shells and applies it to many forms of data ranging from e-mail to images and videos.',
+} = Astro.props;
+---
+
+<html lang="en">
+	<head>
+    <SEO
+      title={title}
+      titleTemplate={Astro.url.pathname === '/' ? title : 'pipelet.io - %s'}
+      titleDefault={title}
+      description={description}
+      charset="utf-8"
+      extend={{
+        meta: [
+          {
+            name: 'viewport',
+            content: 'width=device-width',
+          },
+          {
+            name: 'generator',
+            content: Astro.generator,
+          },
+          {
+            httpEquiv: 'Content-Type',
+            content: 'text/html; charset=utf-8',
+          },
+        ],
+      }}
+    />
+	</head>
+	<body class="flex min-h-screen flex-col bg-zinc-800 text-emerald-600">
+    <Header />
+
+    <main class="flex-1">
+      <slot />
+    </main>
+
+    <script>
+      import '@fontsource-variable/overpass';
+      import '@fontsource-variable/fira-code';
+      import '@fontsource-variable/roboto-flex/wdth.css';
+    </script>
+	</body>
+</html>
